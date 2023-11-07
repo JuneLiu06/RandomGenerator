@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset=utf-8 />
+  <title>Fortune</title>
+</head>
+
+<body>
+
+  <label>Half this number...
+    <input type="number" id="half-input">
+  </label>
+  <button id="half-button">Calculate</button>
+  <br><br>
+
+  <label>Give me your name and I'll give you a fortune...
+    <input id="fortune-input">
+  </label>
+  <button id="fortune-button">Get Fortune</button>
+  <br><br>
+  <div id="fortune-output"></div>
+
+
+  <script>
+    // Function to calculate half of a number
+    function calculateHalf() {
+      const inputVal = document.getElementById('half-input').value;
+      const half = inputVal / 2;
+      alert("Half of " + inputVal + " = " + half);
+    }
+
+    // Array of fortunes
+    const fortunes = [
+  "Your curiosity will lead you to new and exciting knowledge.",
+  "A study session with friends will prove more valuable than you expected.",
+  "The more you learn, the more you realize how much you don't know.",
+  "Your desire for knowledge will open up new doors for you.",
+  "Learning is a journey, not a destination. Enjoy the path you're on.",
+  "A challenge in your studies is just an opportunity to learn something new.",
+  "Remember that the wisest mind has something yet to learn.",
+  "An upcoming test will bring you a pleasant surprise.",
+  "Hard work and dedication will soon pay off in your studies.",
+  "The book you've been avoiding holds the answers you need.",
+  "A new skill you learn will soon come in handy.",
+  "Embrace the questions you have; they'll lead you to deeper understanding.",
+  "An enlightening idea will come to you during a moment of study.",
+  "Consistency in your study routine will yield great results.",
+  "A lecture you attend will change the way you think about a topic.",
+  "Someone will soon recognize your academic efforts.",
+  "Your patience with a complex subject will be rewarded.",
+  "A study break will bring you a burst of unexpected inspiration.",
+  "You'll discover a shortcut in learning a difficult concept.",
+  "Your memory will be especially sharp for an upcoming exam."
+];
+
+
+    // Function to display a random fortune
+    function giveFortune(name) {
+      const randomIndex = Math.floor(Math.random() * fortunes.length);
+      const fortune = fortunes[randomIndex];
+      document.getElementById('fortune-output').innerHTML = name + ",  " + fortune;
+    }
+
+    function getColor() {
+      var r = Math.floor(Math.random() * 256); 
+      var g = Math.floor(Math.random() * 256); 
+      var b = Math.floor(Math.random() * 256); 
+      return 'rgb(' + r + ',' + g + ',' + b + ')'; 
+    }
+
+    // Function to restyle the fortune text
+    function restyle() {
+      const name = document.getElementById('fortune-input').value;
+      giveFortune(name);
+      const output = document.getElementById('fortune-output');
+      // Randomize color
+      const randomColor =getColor();
+      // Randomize font size
+      const randomFontSize = Math.floor(Math.random() * 40) + 15 + "px";
+      // Randomize font style
+      const fontStyles = ["normal", "italic", "oblique", "bold", "bolder", "lighter"];
+      const fontStyle = fontStyles[Math.floor(Math.random() * fontStyles.length)];
+      // Randomize font family
+      const fontFamilies = ["'Courier New'", "'Times New Roman'", "Arial", "Verdana", "Tahoma", "Georgia", "Palatino", "Garamond", "Comic Sans MS", "'Trebuchet MS'"];
+      const fontFamily = fontFamilies[Math.floor(Math.random() * fontFamilies.length)];
+
+      output.style.color = randomColor;
+      output.style.fontSize = randomFontSize;
+      output.style.fontStyle = fontStyle;
+      output.style.fontFamily = fontFamily;
+    }
+
+    // Event listeners for buttons
+    document.getElementById('half-button').addEventListener('click', calculateHalf);
+    document.getElementById('fortune-button').addEventListener('click', restyle);
+  </script>
+
+</body>
+
+</html>
